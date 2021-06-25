@@ -7,7 +7,10 @@
             <img src="/img/avatar.jpg" style="height: 150px; width:150px;" class="rounded-circle">
         </div>
         <div class="col-9 pt-5">
-            <div><h1>{{$user->username}}</h1></div>
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{$user->username}}</h1>
+                <a href="">Add new post</a>
+            </div>
             <div class="d-flex">
                 <div class="pr-5"><strong>342</strong> posts</div>
                 <div class="pr-5"><strong>73.5k</strong> followers</div>
