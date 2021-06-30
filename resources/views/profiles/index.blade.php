@@ -3,15 +3,33 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-3 p-5">
-            <img src="/img/avatar.jpg" style="height: 150px; width:150px;" class="rounded-circle">
-        </div>
+        @if ($user->profile->image)
+            <div class="col-3 p-5">
+                <img src="/storage/{{ $user->profile->image }}" 
+                style="height: 150px; width:150px;" 
+                class="rounded-circle">
+            </div>
+        @else
+            <div class="col-3 p-5">
+                <img 
+                src="/img/icon/account_circle_black_24dp.svg" 
+                style="height: 150px; width:150px;" 
+                class="rounded-circle">
+            </div>
+        @endif
+        
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{$user->username}}</h1>
-                <a href="/p/create">Add new post</a>
+                @can('update', $user->profile)
+                    <a href="/p/create">Add new post</a>
+                @endcan
             </div>
-            <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+            
+            @can('update', $user->profile)
+                <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+            @endcan
+
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
                 <div class="pr-5"><strong>73.5k</strong> followers</div>
